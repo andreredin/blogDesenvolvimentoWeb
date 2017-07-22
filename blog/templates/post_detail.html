@@ -22,5 +22,15 @@
  <p>{{ post.texto|linebreaksbr }}</p>
  </div>
 
+ <div class="content">
+     <div>
+         <h1><a>Comentários</a></h1>
+         {% for comentario in comentarios %}
+            <p>{{ comentario.autor.username }} </p>
+            <p>{{ comentario.texto|linebreaksbr }} </p>
+            <p>{{ comentario.data }} </p>
+         {% endfor %}
+
+
 </body>
 </html>
