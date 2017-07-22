@@ -1,27 +1,31 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <title>Blog AMF</title>
 </head>
 <body>
-<html>
-<html>
- <head>
- <title>AMF blog</title>
- </head>
- <body>
 
- </body>
-<div>
- <h1><a href="/">AMF Blog</a></h1>
+<div class="post-header">
+    <h1><a href="/">Blog AMF</a></h1>
 </div>
+
+
+<div class="content">
 {% for post in posts %}
- <div>
- <p>published: {{ post.data_publicacao }}</p>
- <h1><a href="post/{{ post.id }}">{{ post.titulo }}</a></h1>
- <p>{{ post.texto|linebreaksbr }}</p>
- </div>
+<div class="post">
+    <div class="date">{{ post.data_publicacao }}</div>
+    <h1><a href="post/{{ post.id }}">{{ post.titulo }}</a></h1>
+    <p>{{ post.texto|linebreaksbr }}</p>
+</div>
 {% endfor %}
+</div>
+
 </body>
 </html>

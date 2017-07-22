@@ -1,0 +1,29 @@
+.post-header{
+    background-color: #ff9400;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    text-align: center;
+}
+
+.post-header h1 a, .post-header h1 a:visited, .post-header h1 a a:active{
+    color: #ffffff;
+    font-size: 36pt;
+    font-family: 'Lobster', cursive;
+}
+
+h1 a, h1 a:visited, h1 a:active{
+
+    color: #ff9400;
+    font-family: 'Lobster', cursive;
+}
+
+h1, h2, h3, h4{
+
+    color: #ff9400;
+    font-family: 'Lobster', cursive;
+}
+
+.content{
+ padding-left: 15px;
+ padding-right: 15px;
+}
