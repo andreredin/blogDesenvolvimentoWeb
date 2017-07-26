@@ -47,3 +47,12 @@ h1 a, h1 a:visited, h1 a:active{
 .content textarea {
     width: 100%;
 }
+
+.controls{
+    padding-top: 10px;
+}
+
+.control-group{
+    padding-left: 30px;
+    align-content: 30px;
+}

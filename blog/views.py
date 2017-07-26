@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Post, comentario
 from django.utils import timezone
 from .forms import formComentario, formPost
-
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def post_list(request):
@@ -48,4 +48,15 @@ def post_new(request):
         return render(request, 'post_new.html', {'form': form})
 
 def logar(request):
+
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect(post_list)
+
     return  render (request, 'login.html', {})
