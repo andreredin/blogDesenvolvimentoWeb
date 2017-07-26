@@ -17,3 +17,5 @@ class formPost(forms.ModelForm):
         widgets = {
             'data_publicacao': forms.DateTimeInput(attrs={'class': 'datetimepicker'}),
         }
+
+

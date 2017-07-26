@@ -46,3 +46,6 @@ def post_new(request):
     else:
         form = formPost()
         return render(request, 'post_new.html', {'form': form})
+
+def logar(request):
+    return  render (request, 'login.html', {})
