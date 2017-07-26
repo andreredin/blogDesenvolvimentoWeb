@@ -49,6 +49,9 @@ def post_new(request):
 
 def logar(request):
 
+    if request.user.id is not None:
+        return redirect(post_list)
+
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
