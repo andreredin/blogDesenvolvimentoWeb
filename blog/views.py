@@ -8,11 +8,15 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def post_list(request):
+    if request.user.id is None:
+        return redirect(logar)
 
     posts_publicados = Post.objects.filter(data_publicacao__lte=timezone.now()).order_by('data_publicacao')
     return render(request, 'post_list.html', {'posts': posts_publicados})
 
 def post_detail(request, pk):
+    if request.user.id is None:
+        return redirect(logar)
 
     if request.method == "POST":
         form =  formComentario(request.POST)
@@ -25,6 +29,8 @@ def post_detail(request, pk):
             return redirect(post_detail, pk=pk)
     else:
         post = Post.objects.get(id=pk)
+        post.visualizacoes = post.visualizacoes + 1
+        post.save()
         comentarios = comentario.objects.filter(post=post).order_by('data')
         form = formComentario()
 
@@ -32,6 +38,8 @@ def post_detail(request, pk):
     return render(request, 'post_detail.html', {'post': post, 'comentarios': comentarios, 'form': form})
 
 def post_new(request):
+    if request.user.id is None:
+        return redirect(logar)
 
     if request.method == "POST":
         form =  formPost(request.POST)

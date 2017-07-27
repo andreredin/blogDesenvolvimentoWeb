@@ -20,7 +20,7 @@
 <div class="content">
 {% for post in posts %}
 <div class="post">
-    <h1><a href="post/{{ post.id }}">{{ post.titulo }}</a></h1>
+    <h1><a href="/post/{{ post.id }}">{{ post.titulo }}</a></h1>
     <div class="date">{{ post.data_publicacao }}</div>
     <p>{{ post.texto|linebreaksbr }}</p>
 </div>

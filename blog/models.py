@@ -10,6 +10,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=200)
     texto = models.TextField()
     data_criacao = models.DateTimeField(default = timezone.now)
+    visualizacoes = models.IntegerField(default=0)
     data_publicacao = models.DateTimeField(null = True, blank = True)
     autor = models.ForeignKey('auth.User')
 
