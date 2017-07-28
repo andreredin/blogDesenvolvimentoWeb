@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -12,21 +13,29 @@
 </head>
 <body>
 
-<div class="post-header">
-    <h1><a href="/">Blog AMF</a></h1>
-</div>
-{% if request.user.is_staff %}<div class="date"><a href="/new">New Post</a></div>{% endif %}
-
-
 <div class="content">
-{% for post in posts %}
-<div class="post">
-    <h1><a href="/post/{{ post.id }}">{{ post.titulo }}</a></h1>
-    <div class="date">{{ post.data_publicacao }}</div>
-    <p>{{ post.texto|linebreaksbr }}</p>
+    <div>
+
+        <h1>Novo Usuário</h1>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="POST" class="form-row">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="save btn btn-default">Criar novo usuário</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>
-{% endfor %}
-</div>
+
+
 
 </body>
 </html>

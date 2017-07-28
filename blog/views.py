@@ -5,6 +5,7 @@ from .models import Post, comentario
 from django.utils import timezone
 from .forms import formComentario, formPost
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def post_list(request):
@@ -69,5 +70,52 @@ def logar(request):
             if user.is_active:
                 login(request, user)
                 return redirect(post_list)
-
     return  render (request, 'login.html', {})
+
+def user_new(request):
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(logar)
+        else:
+            return render(request, 'user_new.html', {'form': form})
+    else:
+        form = UserCreationForm()
+        return render(request, 'user_new.html', {'form': form})
+
+def post_edit(request, pk):
+
+    if request.user.id is not None:
+        return redirect(logar)
+    if request.user.is_staff:
+
+        if request.method == 'POST':
+            post = Post.objects.get(id = pk)
+            form = formPost(request.POST, instance=post)
+            if form.is_valid():
+                form.save()
+                post = Post.objects.get(id=pk)
+                return render(request, 'post_detail.html', {'post': post})
+        else:
+            post = Post.objects.get(id=pk)
+            form = formPost(instance=post)
+            return render(request, 'post_new.html', {'form': form})
+
+    else:
+        post = Post.objects.get(id=pk)
+        return render(request, 'post_detail.html', {'post': post})
+
+def post_delete(request, pk):
+    if request.user.id is None:
+        return redirect(logar)
+
+    if request.user.is_staff:
+
+        Post.objects.get(id = pk).delete()
+        return redirect(post_list)
+    else:
+        return redirect(post_list)
+
+
